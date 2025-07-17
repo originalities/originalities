@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Authenticity Checker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #0a0a0a;
+      color: #ff3333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      color: #ff1a1a;
+      margin-bottom: 10px;
+      text-shadow: 0 0 6px #ff0000;
+    }
+
+    .robotic-lines {
+      width: 100%;
+      height: 100px;
+      background: repeating-linear-gradient(
+        to right,
+        #2a0000,
+        #2a0000 6px,
+        #0a0a0a 6px,
+        #0a0a0a 12px
+      );
+      margin-bottom: 40px;
+    }
+
+    input {
+      background: #1a1a1a;
+      color: #ff3333;
+      border: none;
+      border-bottom: 2px solid #ff1a1a;
+      padding: 12px;
+      font-size: 16px;
+      width: 300px;
+      margin-bottom: 20px;
+      outline: none;
+      transition: border 0.3s ease;
+    }
+
+    input:focus {
+      border-bottom: 2px solid #ff3333;
+    }
+
+    button {
+      background: #ff1a1a;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #cc0000;
+    }
+
+    #result {
+      margin-top: 30px;
+      background-color: #1a1a1a;
+      padding: 20px;
+      border-radius: 10px;
+      width: 320px;
+      border: 1px solid #660000;
+      box-shadow: 0 0 10px #440000;
+      font-size: 15px;
+    }
+
+    .success {
+      color: #00ff66;
+    }
+
+    .error {
+      color: #ff1a1a;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="robotic-lines"></div>
+
+  <h1>Verify Your Product</h1>
+
+  <input type="text" id="scratchInput" placeholder="Enter your scratch code..." />
+  <button onclick="verifyCode()">Verify</button>
+
+  <div id="result"></div>
+
+  <script>
+    // Sample Data – replace this with your full JSON data
+    const productData = [
+      {
+        "scratch": "S0M1-DU2E-8FV0",
+        "serial": "SN-PLT01-250718-0001",
+        "model": "Air Max Zoom"
+      },
+      {
+        "scratch": "K5Y7-RP7K-0DA0",
+        "serial": "SN-PLT01-250718-0002",
+        "model": "Reactor Nova"
+      },
+      {
+        "scratch": "D3K9-LQ2Z-9WD8",
+        "serial": "SN-PLT01-250718-0003",
+        "model": "Turbo Phantom"
+      }
+    ];
+
+    function verifyCode() {
+      const input = document.getElementById("scratchInput").value.trim().toUpperCase();
+      const resultDiv = document.getElementById("result");
+      const match = productData.find(item => item.scratch === input);
+
+      if (match) {
+        resultDiv.innerHTML = `
+          <p class="success">✅ <strong>Authentic Product</strong></p>
+          <p><b>Model:</b> ${match.model}</p>
+          <p><b>Serial Number:</b> ${match.serial}</p>
+        `;
+      } else {
+        resultDiv.innerHTML = `<p class="error">❌ Invalid or Fake Scratch Code</p>`;
+      }
+    }
+  </script>
+</body>
+</html>
