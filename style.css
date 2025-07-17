@@ -19,6 +19,7 @@ body {
   position: relative;
   overflow: hidden;
 }
+
 body::before {
   content: '';
   position: absolute;
@@ -33,19 +34,6 @@ body::before {
   z-index: 0;
 }
 
-/* 🔲 Security-style red grid background */
-body::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: linear-gradient(90deg, rgba(255,0,0,0.05) 1px, transparent 1px),
-                    linear-gradient(180deg, rgba(255,0,0,0.05) 1px, transparent 1px);
-  background-size: 40px 40px;
-  z-index: 0;
-}
 #lockIcon {
   width: 40px;
   height: 60px;
@@ -96,21 +84,28 @@ input:focus {
 button {
   padding: 12px 30px;
   font-size: 1rem;
-  background-color: #ff000
-    scan-lines {
-  position: absolute;
+  background-color: #ff0000;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.4);
+  z-index: 1;
+}
+
+/* 🔴 Robotic red lines animation at the top */
+.scan-lines {
+  position: fixed;
   top: 0;
   left: 0;
-  height: 4px;
   width: 100%;
-  background: repeating-linear-gradient(
-    to right,
-    rgba(255, 0, 0, 0.4) 0 2px,
-    transparent 2px 4px
-  );
-  animation: slideLines 2s linear infinite;
-  z-index: 10;
-  opacity: 0.4;
+  height: 100%;
+  background-image: 
+    linear-gradient(90deg, rgba(255, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: 0;
+  pointer-events: none;
 }
 
 @keyframes slideLines {
@@ -120,4 +115,24 @@ button {
   to {
     transform: translateX(100%);
   }
- }
+}
+.brand-name {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ff0000;
+  z-index: 1000;
+  text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+/* Responsive: center it at top on mobile */
+@media (max-width: 768px) {
+  .brand-name {
+    right: 50%;
+    transform: translateX(50%);
+    text-align: center;
+  }
+}

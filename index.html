@@ -1,75 +1,24 @@
-<!-- ✅ FINAL HTML for CodePen (corrected) -->
-
-<!-- Note: Do NOT include <html>, <head>, <body> in CodePen HTML panel -->
-<div class="scan-lines"></div>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- 🔴 Robotic red scan line -->
+<div class="scan-lines"></div>
+
+<!-- 🔒 Lock icon -->
+<div id="lockIcon" class="locked"></div>
+
+<!-- 🧾 Title -->
 <h1 class="title">Verify Your Product</h1>
 
+<!-- 📝 Input & Button -->
 <div class="container">
   <input type="text" id="scratchInput" placeholder="Enter your scratch code" />
   <button onclick="verifyCode()">Verify</button>
+  <class="brand-name">Originalities
 </div>
+
+<!-- 📄 Result -->
 <div id="result"></div>
 
-<style>
-  body {
-    background-color: #0f0f0f;
-    color: #f5f5f5;
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
-  }
-
-  .title {
-    font-size: 2rem;
-    font-weight: 600;
-    margin-bottom: 20px;
-  }
-
-  .container {
-    display: flex;
-    gap: 10px;
-  }
-
-  input {
-    padding: 10px;
-    font-size: 1rem;
-    border: 2px solid #ff0000;
-    border-radius: 8px;
-    background: #1a1a1a;
-    color: white;
-  }
-
-  button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    background-color: #ff0000;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-
-  button:hover {
-    background-color: #cc0000;
-  }
-
-  .success {
-    margin-top: 20px;
-    color: #00ff88;
-    font-weight: 500;
-  }
-
-  .error {
-    margin-top: 20px;
-    color: #ff3333;
-    font-weight: 500;
-  }
 </style>
 
 <script>
