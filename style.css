@@ -1,101 +1,123 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
 }
 
 body {
-  background-color: #0d0d0d;
+  font-family: 'Poppins', sans-serif;
+  background-color: #0a0a0a;
   color: #eee;
   min-height: 100vh;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
   position: relative;
+  overflow: hidden;
 }
-
-.bg-lines {
+body::before {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-image: 
-    linear-gradient(90deg, rgba(255, 0, 0, 0.05) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(255, 0, 0, 0.05) 1px, transparent 1px);
+    linear-gradient(90deg, rgba(255,0,0,0.05) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255,0,0,0.05) 1px, transparent 1px);
   background-size: 40px 40px;
   z-index: 0;
 }
 
+/* 🔲 Security-style red grid background */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(90deg, rgba(255,0,0,0.05) 1px, transparent 1px),
+                    linear-gradient(180deg, rgba(255,0,0,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: 0;
+}
+#lockIcon {
+  width: 40px;
+  height: 60px;
+  border: 3px solid white;
+  border-radius: 6px;
+  position: relative;
+  margin-bottom: 20px;
+  transition: transform 1s ease, opacity 1s ease;
+  z-index: 1;
+}
+
+.title {
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #ff4444;
+  text-shadow: 0 0 4px rgba(255, 68, 68, 0.4);
+  z-index: 1;
+}
+
 .container {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
-  z-index: 1;
-  position: relative;
-}
-
-.card {
-  background-color: #1a1a1a;
-  padding: 35px;
-  border-radius: 12px;
-  border: 2px solid #ff0033;
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
-  text-align: center;
-  width: 100%;
+  gap: 15px;
+  width: 90%;
   max-width: 400px;
+  z-index: 1;
 }
 
-.card h1 {
-  font-size: 24px;
-  color: #ff0033;
-  margin-bottom: 10px;
-}
-
-.card p {
-  font-size: 14px;
-  color: #ccc;
-  margin-bottom: 20px;
-}
-
-form input {
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  border: 1px solid #ff0033;
-  background: #101010;
-  color: #fff;
-  font-size: 14px;
-  outline: none;
-  transition: 0.3s;
-}
-
-form input:focus {
-  box-shadow: 0 0 10px #ff0033aa;
-}
-
-form button {
-  width: 100%;
+input {
   padding: 12px;
-  background: #ff0033;
-  border: none;
-  border-radius: 10px;
-  font-weight: bold;
+  font-size: 1rem;
+  border: 2px solid #ff0000;
+  border-radius: 8px;
+  background: #1c1c1c;
   color: #fff;
-  font-size: 15px;
-  cursor: pointer;
-  transition: 0.3s;
+  width: 100%;
+  box-shadow: 0 0 6px rgba(255, 0, 0, 0.3);
 }
 
-form button:hover {
-  background-color: #cc002a;
-  box-shadow: 0 0 12px #ff0033aa;
+input:focus {
+  outline: none;
+  border-color: #ff0000;
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.4);
 }
 
-#result {
-  margin-top: 20px;
-  font-size: 15px;
-  font-weig
+button {
+  padding: 12px 30px;
+  font-size: 1rem;
+  background-color: #ff000
+    scan-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background: repeating-linear-gradient(
+    to right,
+    rgba(255, 0, 0, 0.4) 0 2px,
+    transparent 2px 4px
+  );
+  animation: slideLines 2s linear infinite;
+  z-index: 10;
+  opacity: 0.4;
+}
+
+@keyframes slideLines {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+ }

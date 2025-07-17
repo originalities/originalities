@@ -2197,28 +2197,50 @@ const productData = [
   }
 ];
 
+
+// ✅ Clean productData 
+productData = productData.filter(item =>
+  item.C && item.E && item.G && item.C !== "Scratch codes"
+);
+
+productData.forEach(item => {
+  item.C = item.C.trim().toUpperCase();
+});
+
 function verifyCode() {
-  const input = document
-    .getElementById("scratchInput")
-    .value.trim()
-    .toUpperCase();
+  const inputBox = document.getElementById("scratchInput");
+  const input = inputBox.value.trim().toUpperCase();
   const resultDiv = document.getElementById("result");
+  const lock = document.getElementById("lockIcon"); // Lock icon reference
 
-  const match = productData.find(
-    (item) => item.C.trim().toUpperCase() === input
-  );
+  // Add loading animation
+  resultDiv.className = 'verifying';
+  resultDiv.innerHTML = '';
+  lock.classList.remove("unlocked");
+  lock.classList.add("locked");
 
-  if (match) {
-    resultDiv.innerHTML = `
-      <p class="success">
+  // Simulate delay (like system verification)
+  setTimeout(() => {
+    const match = productData.find(item => item.C === input);
+
+    if (match) {
+      resultDiv.className = 'success';
+      resultDiv.innerHTML = `
         ✅ <strong>Authentic Product</strong><br><br>
         <b>Model:</b> ${match.G}<br>
         <b>Serial Number:</b> ${match.E}
-      </p>
-    `;
-  } else {
-    resultDiv.innerHTML = `
-      <p class="error">❌ <strong>Invalid or Fake Scratch Code</strong></p>
-    `;
-  }
+      `;
+
+      // 🔓 Unlock the lock smoothly
+      setTimeout(() => {
+        lock.classList.remove("locked");
+        lock.classList.add("unlocked");
+      }, 300); // Adjust if you want delay after success
+    } else {
+      resultDiv.className = 'error';
+      resultDiv.innerHTML = `
+        ❌ <strong>Invalid or Fake Scratch Code</strong>
+      `;
+    }
+  }, 1000); // 1-second simulated delay
 }

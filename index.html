@@ -1,8 +1,10 @@
 <!-- ✅ FINAL HTML for CodePen (corrected) -->
 
 <!-- Note: Do NOT include <html>, <head>, <body> in CodePen HTML panel -->
-
+<div class="scan-lines"></div>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <h1 class="title">Verify Your Product</h1>
+
 <div class="container">
   <input type="text" id="scratchInput" placeholder="Enter your scratch code" />
   <button onclick="verifyCode()">Verify</button>
@@ -2276,6 +2278,15 @@ productData = productData.filter(item =>
 productData.forEach(item => {
   item.C = item.C.trim().toUpperCase();
 });
+  function cleanInput(value) {
+  return value
+    .trim()
+    .toUpperCase()
+    .replace(/[–—−]/g, "-") // convert different dashes to hyphen
+    .replace(/\u00A0/g, "") // remove non-breaking space
+    .replace(/[^A-Z0-9-]/g, ""); // remove any weird characters
+}
+
 
 function verifyCode() {
   const input = document.getElementById("scratchInput").value.trim().toUpperCase();
